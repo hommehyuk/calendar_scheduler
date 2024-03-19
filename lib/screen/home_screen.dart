@@ -48,6 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   FloatingActionButton renderFloatingActionButton() {
     return FloatingActionButton(
+      shape: CircleBorder(),
       onPressed: () {
         showModalBottomSheet(
           context: context,
