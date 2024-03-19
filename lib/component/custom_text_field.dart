@@ -43,6 +43,21 @@ class CustomTextField extends StatelessWidget {
         if (val == null || val.isEmpty) {
           return '값을 입력 해주세요.';
         }
+
+        if (isTime) {
+          int time = int.parse(val);
+
+          if (time < 0) {
+            return '0 이상의 숫자를 입력 해주세요.';
+          }
+          if (time > 24) {
+            return '24 이하의 숫자를 입력 해주세요.';
+          }
+        } else {
+          if (val.length > 500) {
+            return '500자 이하의 글자를 입력 해주세요.';
+          }
+        }
         return null;
       },
       cursorColor: Colors.grey,
