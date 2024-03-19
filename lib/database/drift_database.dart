@@ -18,6 +18,18 @@ part 'drift_database.g.dart';
 )
 class LocalDatabase extends _$LocalDatabase {
   LocalDatabase() : super(_openConnection());
+
+  Future<int> createSchedule(SchedulesCompanion data) =>
+      into(schedules).insert(data);
+
+  Future<int> createCategoryColor(CategoryColorsCompanion data) =>
+      into(categoryColors).insert(data);
+
+  Future<List<CategoryColor>> getCategoryColors() =>
+      select(categoryColors).get();
+
+  @override
+  int get schemaVersion => 1;
 }
 
 LazyDatabase _openConnection() {
