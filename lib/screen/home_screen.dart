@@ -4,7 +4,7 @@ import 'package:calendar_scheduler/component/schedule_card.dart';
 import 'package:calendar_scheduler/component/today_banner.dart';
 import 'package:calendar_scheduler/const/colors.dart';
 import 'package:calendar_scheduler/database/drift_database.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:drift/drift.dart' show Value;
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -93,25 +93,32 @@ class _ScheduleList extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 8.0),
         child: StreamBuilder<List<Schedule>>(
-            stream: GetIt.I<LocalDatabase>().watchSchedules(),
+            stream: GetIt.I<LocalDatabase>().watchSchedules(selectedDate),
             builder: (context, snapshot) {
-              List<Schedule> schedules = [];
-
-              if (snapshot.hasData) {
-                schedules = snapshot.data!
-                    .where((element) => element.date == selectedDate)
-                    .toList();
+              print(snapshot.data);
+              if (!snapshot.hasData) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
               }
+              if (snapshot.hasData && snapshot.data!.isEmpty) {
+                return Center(
+                  child: Text('스케줄이 없습니다.'),
+                );
+              }
+
               return ListView.separated(
-                itemCount: 100,
+                itemCount: snapshot.data!.length,
                 separatorBuilder: (context, index) {
                   return SizedBox(height: 8.0);
                 },
                 itemBuilder: (context, index) {
+                  final schedule = snapshot.data![index];
+
                   return ScheduleCard(
-                    startTime: 8,
-                    endTime: 9,
-                    content: '프로그래밍 공부하기. $index',
+                    startTime: schedule.startTime,
+                    endTime: schedule.endTime,
+                    content: schedule.content,
                     color: Colors.red,
                   );
                 },
