@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
           },
         );
       },
-      backgroundColor: PRIMART_COLOR,
+      backgroundColor: PRIMARY_COLOR,
       child: Icon(
         Icons.add,
       ),

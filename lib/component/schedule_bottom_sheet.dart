@@ -1,8 +1,12 @@
 import 'package:calendar_scheduler/component/custom_text_field.dart';
 import 'package:calendar_scheduler/const/colors.dart';
+import 'package:calendar_scheduler/database/drift_database.dart';
+import 'package:calendar_scheduler/model/category_color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get_it/get_it.dart';
+import 'package:calendar_scheduler/database/drift_database.dart';
 
 class ScheduleBottomSheet extends StatefulWidget {
   const ScheduleBottomSheet({super.key});
@@ -56,7 +60,25 @@ class _ScheduleBottomSheetState extends State<ScheduleBottomSheet> {
                     },
                   ),
                   SizedBox(height: 16.0),
-                  _ColorPicker(),
+                  FutureBuilder<List<CategoryColor>>(
+                    future: GetIt.I<LocalDatabase>().getCategoryColors(),
+                    builder: (context, snapshot) {
+                      return _ColorPicker(
+                        colors: snapshot.hasData
+                            ? snapshot.data!
+                                .map(
+                                  (e) => Color(
+                                    int.parse(
+                                      'FF${e.hexCode}',
+                                      radix: 16,
+                                    ),
+                                  ),
+                                )
+                                .toList()
+                            : [],
+                      );
+                    },
+                  ),
                   SizedBox(height: 8.0),
                   _SaveButton(
                     onPressed: onSavePressed,
@@ -144,22 +166,19 @@ class _Content extends StatelessWidget {
 }
 
 class _ColorPicker extends StatelessWidget {
-  const _ColorPicker({super.key});
+  final List<Color> colors;
+
+  const _ColorPicker({
+    required this.colors,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Wrap(
       spacing: 8.0,
       runSpacing: 10.0,
-      children: [
-        renderColor(Colors.red),
-        renderColor(Colors.orange),
-        renderColor(Colors.yellow),
-        renderColor(Colors.green),
-        renderColor(Colors.blue),
-        renderColor(Colors.indigo),
-        renderColor(Colors.purple),
-      ],
+      children: colors.map((e) => renderColor(e)).toList(),
     );
   }
 
@@ -191,7 +210,7 @@ class _SaveButton extends StatelessWidget {
           child: ElevatedButton(
             onPressed: onPressed,
             style: ElevatedButton.styleFrom(
-              backgroundColor: PRIMART_COLOR,
+              backgroundColor: PRIMARY_COLOR,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(4.0),
               ),

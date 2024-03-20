@@ -46,7 +46,7 @@ class Calendar extends StatelessWidget {
             color: Colors.white,
             borderRadius: BorderRadius.circular(6.0),
             border: Border.all(
-              color: PRIMART_COLOR,
+              color: PRIMARY_COLOR,
               width: 1.0,
             ),
           ),
@@ -56,7 +56,7 @@ class Calendar extends StatelessWidget {
           defaultTextStyle: defaultTextStyle,
           weekendTextStyle: defaultTextStyle,
           selectedTextStyle: defaultTextStyle.copyWith(
-            color: PRIMART_COLOR,
+            color: PRIMARY_COLOR,
           )),
       onDaySelected: onDaySelected,
       selectedDayPredicate: (DateTime date) {

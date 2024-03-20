@@ -22,7 +22,7 @@ class ScheduleCard extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           width: 1.0,
-          color: PRIMART_COLOR,
+          color: PRIMARY_COLOR,
         ),
         borderRadius: BorderRadius.circular(8.0),
       ),
@@ -66,7 +66,7 @@ class _Time extends StatelessWidget {
   Widget build(BuildContext context) {
     final textStyle = TextStyle(
       fontWeight: FontWeight.w600,
-      color: PRIMART_COLOR,
+      color: PRIMARY_COLOR,
       fontSize: 16.0,
     );
 

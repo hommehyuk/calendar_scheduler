@@ -24,7 +24,7 @@ class CustomTextField extends StatelessWidget {
         Text(
           label,
           style: TextStyle(
-            color: PRIMART_COLOR,
+            color: PRIMARY_COLOR,
             fontWeight: FontWeight.w600,
           ),
         ),
