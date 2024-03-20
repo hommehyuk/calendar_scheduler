@@ -39,7 +39,6 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(height: 8.0),
             TodayBanner(
               selectedDay: selectedDay,
-              scheduleCount: 3,
             ),
             SizedBox(height: 8.0),
             _ScheduleList(
@@ -68,6 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: PRIMARY_COLOR,
       child: Icon(
         Icons.add,
+        color: Colors.white,
       ),
     );
   }
