@@ -1,16 +1,3 @@
 # calendar_scheduler
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+[Screen_recording_20240419_160152.webm](https://github.com/hommehyuk/calendar_scheduler/assets/121222439/fc6d73f2-364a-46dd-81ff-56e3f79846dc)
